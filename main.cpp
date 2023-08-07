@@ -14,6 +14,7 @@ void testFunc(void* arg)
     sleep(1);
 }
 
+//测试
 int main(){
     threadPool pool(3,10);
     for (int i = 0; i < 121; i++)
@@ -28,10 +29,7 @@ int main(){
         pool.addTask(ttt);
     }
 
-    sleep(60);//假装在做别的事
+    sleep(30);//假装在做别的事
 
-    //printf("--------------------------------\n");
-    //printf("%d\n",pool->livenum);
-    //printf("%ld\n",pool->managerid);
     return 0;
 }

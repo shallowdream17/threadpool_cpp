@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
-#include <pthread.h>
+//#include <pthread.h>
+#include <mutex>
 
 struct task{
     void (*function)(void *arg);
@@ -25,5 +26,6 @@ public:
     }
 private:
     std::queue<task> que;
-    pthread_mutex_t mutex;
+    //pthread_mutex_t mutex;
+    std::mutex task_mutex;
 };

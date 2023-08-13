@@ -1,2 +1,2 @@
 # threadpool_cpp
-Linux下的简易版线程池（c++实现）  
+Linux下的简易版线程池（c++11实现）  

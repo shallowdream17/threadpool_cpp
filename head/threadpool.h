@@ -1,8 +1,12 @@
 #pragma once
 #include "taskqueue.h"
 //#include <pthread.h>
-#include <pthread>
+#include <thread>
 #include <mutex>
+#include <stack>
+#include <string>
+#include <map>
+#include <sstream>
 #include <semaphore.h>
 
 class threadPool{
@@ -13,6 +17,7 @@ public:
     void addTask(const task& newTask);//添加任务
     int threadpoolbusynum();//获取线程池中工作的线程个数
     int threadpoollivenum();//获取线程池中存活的线程个数
+    std::string threadIdToString(const std::thread::id& id);//将thread::id转换为字符串
 
 
 private:
@@ -30,6 +35,10 @@ private:
     std::mutex mutexPool;//锁下整个线程池
     std::mutex mutexBusy;//锁下忙碌的线程数量
     sem_t full;//任务队列中的任务个数
+
+    std::stack<int> stopStack;//记录运行过程中要回收的子线程
+    std::map<std::thread::id,int> Map;//记录线程id
+    
 
     bool shutdown;//是否要销毁线程池
 
